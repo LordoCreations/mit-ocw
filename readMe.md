@@ -7,4 +7,4 @@ This is a MIT Open CourseWare course walkthrough, most concepts are written down
     - https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
 
 
-### Last Updated July 1st, 2022
+### Last Updated July 3rd, 2022
