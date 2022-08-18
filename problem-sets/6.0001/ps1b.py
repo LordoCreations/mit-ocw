@@ -1,0 +1,45 @@
+def sinput(query, type=int, edit=False):
+    try:
+        if edit:
+            v = edit(input(query))
+            if not v: raise ValueError
+            else: return v
+        else:
+            return type(input(query))
+    except KeyboardInterrupt:
+        exit()
+    except:
+        print('Invalid Input - Try Again')
+        return sinput(query, type, edit)
+
+
+def percent(v):
+    try:
+        return int(v.replace(" ", "")[:-1])/100
+    except:
+        return None
+
+total_cost = sinput('What is the cost of your dream home?   ')
+portion_down_payment = 0.25
+current_savings = 0
+r = 0.04
+annual_salary = sinput('What is your current annual salary?   ')
+portion_saved = sinput('What percentage of your salary will go towards this house?   ', edit=percent)
+semi_annual_raise = sinput('What percentage will your salary raise every 6 months?   ', edit=percent)
+
+montly_salary = annual_salary/12
+
+months = 1
+i = True
+while current_savings<=total_cost:
+    current_savings *= 1+r/12
+    if months%6 == 0:
+        annual_salary *= 1+semi_annual_raise
+    current_savings += annual_salary/12*portion_saved
+    if current_savings >= total_cost*portion_down_payment and i:
+        print(f'It will take {months} month(s) for you to have enough money to pay the down payment for this house.')
+        i = False
+    months += 1
+
+
+print(f'It will take {months} month(s) for you to have enough money to pay for this house.')
